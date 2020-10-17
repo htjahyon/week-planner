@@ -21,6 +21,7 @@ var days = [
     day: "Saturday"
   }
 ];
+var textDayElement = document.querySelector("span");
 function start() {
   var tbodyElement = document.querySelector(".rows");
   for(var i=0; i<8; i++) {
@@ -32,3 +33,12 @@ function start() {
   }
 }
 start();
+
+var divElement = document.querySelector(".week");
+divElement.addEventListener("click", daySchedule);
+
+function daySchedule() {
+  if(event.target.className !== "day") return;
+    var text = event.target.textContent;
+    textDayElement.textContent = text;
+}
