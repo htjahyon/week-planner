@@ -21,29 +21,14 @@ var days = [
     day: "Saturday"
   }
 ];
-function returnDays(object) {
-  var dayElement = document.createElement("div");
-  dayElement.className = "day";
-  dayElement.textContent = object.day;
-  return dayElement;
-}
-for(var i=0; i<days.length; i++) {
-  document.querySelector(".week").appendChild(returnDays(days[i]));
-}
-function returnTable(name) {
-  var tableElement = document.createElement("table");
-  tableElement.id = name;
-  var titleElement = document.createElement("tr");
-  titleElement.textContent = name;
-  titleElement.style = "background-color: lightgray";
-  tableElement.appendChild(titleElement);
+function start() {
+  var tbodyElement = document.querySelector(".rows");
   for(var i=0; i<8; i++) {
     var rowElement = document.createElement("tr");
-    var dataElement = document.createElement("td");
-    rowElement.appendChild(dataElement);
-    tableElement.appendChild(rowElement);
+    var dataElement1 = document.createElement("td");
+    var dataElement2 = document.createElement("td");
+    tbodyElement.appendChild(rowElement);
+    rowElement.append(dataElement1, dataElement2);
   }
-  return tableElement;
 }
-document.querySelector(".tables").appendChild(returnTable("Time"));
-document.querySelector(".tables").appendChild(returnTable("Description"));
+start();

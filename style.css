@@ -4,6 +4,7 @@ h1 {
 .week {
   display:flex;
   justify-content:center;
+  width:100%;
 }
 .day {
   width:10%;
@@ -14,9 +15,10 @@ h1 {
   margin:0% 2% 2% 0%;
 }
 .add {
+  display:flex;
   justify-content:center;
 }
-p {
+button {
   width:10%;
   text-align:center;
   font-size:20px;
@@ -24,23 +26,34 @@ p {
   padding: 1% 0% 1% 0%;
   margin:0 auto;
 }
-.tables {
+.schedule {
   display:flex;
-  width:100%;
   justify-content:center;
+  flex-direction:column;
 }
-#Time {
-  width:39%;
-  height:80px;
+table {
+  margin:0 auto;
+  width:80%;
+  justify-content:center;
   border:2px solid;
+  border-collapse:collapse;
 }
-#Description {
-  width:59%;
-  height:80px;
-  border:2px solid;
+#time {
+  width:29%;
+  height:30px;
 }
-tr {
+#description {
+  width:69%;
+  height:30px;
+}
+th {
+  height:30px;
+  background-color:lightgray;
+}
+ tr, td , th{
   height:20px;
+  width:30%;
+  border:2px solid;
 }
 tr:nth-child(even) {
   background-color:lightblue;
