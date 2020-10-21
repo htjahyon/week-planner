@@ -22,13 +22,17 @@ h1 {
   display:flex;
   justify-content:center;
 }
-button {
+#id {
   width:10%;
   text-align:center;
   font-size:20px;
   border:2px solid;
   padding: 1% 0% 1% 0%;
   margin:0 auto;
+}
+button:hover {
+  cursor:pointer;
+  background-color:lightblue;
 }
 .schedule {
   display:flex;
@@ -57,8 +61,29 @@ th {
  tr, td , th{
   height:20px;
   width:30%;
-  border:2px solid;
+  border:0.5px solid;
 }
 tr:nth-child(even) {
   background-color:lightblue;
+}
+.modal
+{
+  display:none;
+  background-color:white;
+  position:fixed;
+  top:25%;
+  left:15%;
+  height:50%;
+  width:60%;
+  font-size:20px;
+  z-index:1;
+  overflow:auto;
+  text-align: center;
+}
+#x {
+  margin-left:90%;
+  margin-bottom:5%;
+}
+#x:hover {
+  cursor:pointer;
 }
