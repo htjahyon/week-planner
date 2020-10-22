@@ -66,7 +66,7 @@ th {
 tr:nth-child(even) {
   background-color:lightblue;
 }
-#modal1, #modal2 {
+#modal1, #modal2, #modal3 {
   display:none;
   background-color:white;
   position:fixed;
@@ -79,23 +79,24 @@ tr:nth-child(even) {
   overflow:auto;
   text-align: center;
 }
-#x1, #x2 {
+#x1, #x2, #x3 {
   margin-left:90%;
   margin-bottom:5%;
 }
-#x1:hover, #x2:hover {
+#x1:hover, #x2:hover, #x3:hover {
   cursor:pointer;
 }
 #inputday2 {
   font-size:15px;
   display:inline;
 }
-#updateButton {
+#updateButton, #deleteButton {
+  display:inline;
   float:right;
   width:15%;
   height: 15px;
   font-size:10px;
-  background-color: rgb(79, 79, 134);
+  background-color:blue;
   color:white;
-  margin:0% 3% 0% 0%;
+  margin:0% 1.5% 0% 0%;
 }

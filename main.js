@@ -17,7 +17,7 @@ var days = [
   {
     day: "Wednesday",
     times: [],
-    description: []
+    descriptions: []
   },
   {
     day: "Thursday",
@@ -49,6 +49,7 @@ entryModalElement.addEventListener("click", entryModal);
 start();
 var tdElements = document.querySelector(".schedule");
 tdElements.addEventListener("click", updateModal);
+tdElements.addEventListener("click", deleteModal);
 
 function start() {
   var tbodyElement = document.querySelector(".rows");
@@ -89,12 +90,21 @@ function updateModal() {
   var submit2 = document.querySelector("#submit2");
   submit2.addEventListener("click", updateEvent);
   window.onclick = function (event) {
-    if (event.target.id === "x2") {
+    if (event.target.id === "x2" || event.target.id === "submit2") {
       modal.style = "display:none";
     }
-    else if(event.target.id === "submit2") {
+  }
+}
+function deleteModal() {
+  if (event.target.id !== "deleteButton") return;
+  selectedRowIndex = event.target.className;
+  var modal = document.querySelector("#modal3");
+  modal.style = "display:block";
+  var yesButton = document.querySelector("#yes");
+  yesButton.addEventListener("click", deleteEvent);
+  window.onclick = function (event) {
+    if (event.target.id === "x3" || event.target.id === "no" || event.target.id === "yes") {
       modal.style = "display:none";
-      updateEvent();
     }
   }
 }
@@ -122,8 +132,16 @@ function updateEvent() {
   }
   days[i].times[selectedRowIndex] = inputTime;
   days[i].descriptions[selectedRowIndex] = inputDescription;
-  var oldUpdateButton = document.getElementsByClassName(selectedRowIndex)[0];
-  oldUpdateButton.remove();
+  displaySchedule();
+}
+function deleteEvent() {
+  for (var i = 0; i < days.length; i++) {
+    if (selectedDay === days[i].day) {
+      break;
+    }
+  }
+  days[i].times.splice(selectedRowIndex,1);
+  days[i].descriptions.splice(selectedRowIndex,1);
   displaySchedule();
 }
 function displaySchedule() {
@@ -144,6 +162,12 @@ function displaySchedule() {
   for (var k=0; k<days[i].times.length; k++) {
     timeData[k].textContent = days[i].times[k];
     descriptionData[k].textContent = days[i].descriptions[k];
+    var deleteButton = document.createElement("button");
+    deleteButton.id = "deleteButton";
+    deleteButton.className = k;
+    deleteButton.textContent = "Delete";
+    deleteButton.style = "background-color: red";
+    descriptionData[k].appendChild(deleteButton);
     var updateButton = document.createElement("button");
     updateButton.id = "updateButton";
     updateButton.className = k;
