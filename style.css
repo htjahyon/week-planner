@@ -66,8 +66,7 @@ th {
 tr:nth-child(even) {
   background-color:lightblue;
 }
-.modal
-{
+#modal1, #modal2 {
   display:none;
   background-color:white;
   position:fixed;
@@ -80,10 +79,23 @@ tr:nth-child(even) {
   overflow:auto;
   text-align: center;
 }
-#x {
+#x1, #x2 {
   margin-left:90%;
   margin-bottom:5%;
 }
-#x:hover {
+#x1:hover, #x2:hover {
   cursor:pointer;
+}
+#inputday2 {
+  font-size:15px;
+  display:inline;
+}
+#updateButton {
+  float:right;
+  width:15%;
+  height: 15px;
+  font-size:10px;
+  background-color: rgb(79, 79, 134);
+  color:white;
+  margin:0% 3% 0% 0%;
 }

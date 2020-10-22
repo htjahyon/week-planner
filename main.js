@@ -36,14 +36,19 @@ var days = [
   }
 ];
 var selectedDay = "Monday";
-var textDayElement = document.querySelector("span");
-var rowIndex = 0;
-start();
 
+var rightDataElement = null;
+var selectedRowIndex = 0;
+var textDayElement = document.querySelector("span");
 var weekElement = document.querySelector(".week");
 weekElement.addEventListener("click", daySchedule);
-var buttonElement = document.querySelector("button");
-buttonElement.addEventListener("click", entryModal);
+var entryModalElement = document.querySelector("#entry");
+entryModalElement.addEventListener("click", entryModal);
+
+
+start();
+var tdElements = document.querySelector(".schedule");
+tdElements.addEventListener("click", updateModal);
 
 function start() {
   var tbodyElement = document.querySelector(".rows");
@@ -64,20 +69,39 @@ function daySchedule() {
     displaySchedule();
 }
 function entryModal() {
-  var modal = document.querySelector(".modal");
+  var modal = document.querySelector("#modal1");
   modal.style = "display:block";
-  var submit = document.querySelector("#submit");
-  submit.addEventListener("click", addEvent);
+  var submit1 = document.querySelector("#submit1");
+  submit1.addEventListener("click", addEvent);
   window.onclick = function(event) {
-    if(event.target.id === "x" || event.target.id === "submit") {
+    if(event.target.id === "x1" || event.target.id === "submit1") {
        modal.style = "display:none";
     }
   }
 }
+function updateModal() {
+  if (event.target.id !== "updateButton") return;
+    selectedRowIndex = event.target.className;
+  var modal = document.querySelector("#modal2");
+  modal.style = "display:block";
+  var sameDay = document.querySelector("#inputday2");
+  sameDay.textContent = selectedDay;
+  var submit2 = document.querySelector("#submit2");
+  submit2.addEventListener("click", updateEvent);
+  window.onclick = function (event) {
+    if (event.target.id === "x2") {
+      modal.style = "display:none";
+    }
+    else if(event.target.id === "submit2") {
+      modal.style = "display:none";
+      updateEvent();
+    }
+  }
+}
 function addEvent() {
-  var inputDay = document.querySelector("#inputday").value;
-  var inputTime = document.querySelector("#inputtime").value;
-  var inputDescription = document.querySelector("#inputdescription").value;
+  var inputDay = document.querySelector("#inputday1").value;
+  var inputTime = document.querySelector("#inputtime1").value;
+  var inputDescription = document.querySelector("#inputdescription1").value;
   for(var i=0; i<days.length; i++) {
     if(inputDay === days[i].day) {
       days[i].times.push(inputTime);
@@ -87,6 +111,20 @@ function addEvent() {
   if(selectedDay === inputDay) {
     displaySchedule();
   }
+}
+function updateEvent() {
+  var inputTime = document.querySelector("#inputtime2").value;
+  var inputDescription = document.querySelector("#inputdescription2").value;
+  for(var i=0; i<days.length; i++) {
+    if(selectedDay === days[i].day) {
+      break;
+    }
+  }
+  days[i].times[selectedRowIndex] = inputTime;
+  days[i].descriptions[selectedRowIndex] = inputDescription;
+  var oldUpdateButton = document.getElementsByClassName(selectedRowIndex)[0];
+  oldUpdateButton.remove();
+  displaySchedule();
 }
 function displaySchedule() {
   for (var i=0; i<days.length; i++) {
@@ -106,6 +144,10 @@ function displaySchedule() {
   for (var k=0; k<days[i].times.length; k++) {
     timeData[k].textContent = days[i].times[k];
     descriptionData[k].textContent = days[i].descriptions[k];
+    var updateButton = document.createElement("button");
+    updateButton.id = "updateButton";
+    updateButton.className = k;
+    updateButton.textContent = "Update";
+    descriptionData[k].appendChild(updateButton);
   }
-  rowIndex = days[i].times.length;
 }
