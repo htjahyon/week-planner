@@ -2,44 +2,37 @@ var days = [
   {
     day: "Sunday",
     times: [],
-    descriptions: [],
-    numofentries: 0
+    descriptions: []
   },
   {
     day: "Monday",
     times: [],
-    descriptions: [],
-    numofentries: 0
+    descriptions: []
   },
   {
     day: "Tuesday",
     times: [],
-    descriptions: [],
-    numofentries: 0
+    descriptions: []
   },
   {
     day: "Wednesday",
     times: [],
-    descriptions: [],
-    numofentries: 0
+    descriptions: []
   },
   {
     day: "Thursday",
     times: [],
-    descriptions: [],
-    numofentries: 0
+    descriptions: []
   },
   {
     day: "Friday",
     times: [],
-    descriptions: [],
-    numofentries: 0
+    descriptions: []
   },
   {
     day: "Saturday",
     times: [],
-    descriptions: [],
-    numofentries: 0
+    descriptions: []
   }
 ];
 var selectedDay = "Monday";
@@ -136,8 +129,10 @@ function addEvent() {
     if(inputDay === days[i].day) {
       days[i].times.push(inputTime);
       days[i].descriptions.push(inputDescription);
+      break;
     }
   }
+  displayNumOfEntries();
   if(selectedDay === inputDay) {
     displaySchedule();
   }
