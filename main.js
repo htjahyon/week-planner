@@ -39,12 +39,25 @@ var selectedDay = "Monday";
 
 var rightDataElement = null;
 var selectedRowIndex = 0;
-var textDayElement = document.querySelector("span");
-var weekElement = document.querySelector(".week");
-weekElement.addEventListener("click", daySchedule);
+var textDayElement = document.querySelector("#currentday");
+
+var sundayElement = document.getElementById("sunday");
+var mondayElement = document.getElementById("monday");
+var tuesdayElement = document.getElementById("tuesday");
+var wednesdayElement = document.getElementById("wednesday");
+var thursdayElement = document.getElementById("thursday");
+var fridayElement = document.getElementById("friday");
+var saturdayElement = document.getElementById("saturday");
+sundayElement.addEventListener("click", daySchedule);
+mondayElement.addEventListener("click", daySchedule);
+tuesdayElement.addEventListener("click", daySchedule);
+wednesdayElement.addEventListener("click", daySchedule);
+thursdayElement.addEventListener("click", daySchedule);
+fridayElement.addEventListener("click", daySchedule);
+saturdayElement.addEventListener("click", daySchedule);
+
 var entryModalElement = document.querySelector("#entry");
 entryModalElement.addEventListener("click", entryModal);
-
 
 start();
 var tdElements = document.querySelector(".schedule");
@@ -63,9 +76,9 @@ function start() {
     rowElement.append(dataElement1, dataElement2);
   }
 }
-function daySchedule() {
-  if(event.target.className !== "day") return;
-    selectedDay = event.target.textContent;
+function daySchedule(event) {
+  if(event.currentTarget.className !== "day") return;
+    selectedDay = event.currentTarget.getAttribute("data-day");
     textDayElement.textContent = selectedDay;
     displaySchedule();
 }
@@ -116,8 +129,10 @@ function addEvent() {
     if(inputDay === days[i].day) {
       days[i].times.push(inputTime);
       days[i].descriptions.push(inputDescription);
+      break;
     }
   }
+  displayNumOfEntries();
   if(selectedDay === inputDay) {
     displaySchedule();
   }
@@ -150,7 +165,7 @@ function displaySchedule() {
       break;
     }
   }
-  if (days[i].times === undefined && days[i].description === undefined) {
+  if (days[i] === undefined) {
     return;
   }
   var timeData = document.getElementsByClassName("timedata");
@@ -173,5 +188,14 @@ function displaySchedule() {
     updateButton.className = k;
     updateButton.textContent = "Update";
     descriptionData[k].appendChild(updateButton);
+    displayNumOfEntries();
+  }
+}
+function displayNumOfEntries() {
+  for(var i=0; i<days.length; i++) {
+    var spanNumberElement = document.getElementsByClassName("daynum")[i];
+    if(days[i].times.length !== 0) {
+      spanNumberElement.textContent = days[i].times.length;
+    }
   }
 }

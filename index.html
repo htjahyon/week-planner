@@ -7,19 +7,33 @@
   <body>
     <h1>Weekly Planner</h1>
     <div class="week">
-      <div class="day">Sunday</div>
-      <div class="day">Monday</div>
-      <div class="day">Tuesday</div>
-      <div class="day">Wednesday</div>
-      <div class="day">Thursday</div>
-      <div class="day">Friday</div>
-      <div class="day">Saturday</div>
+      <div data-day="Sunday" id="sunday" class="day">
+        <span class="dayword">Sunday<br></span><span class="daynum">0</span>
+      </div>
+      <div data-day="Monday" id="monday" class="day">
+       <span class="dayword">Monday<br></span><span class="daynum">0</span>
+      </div>
+      <div data-day="Tuesday" id="tuesday" class="day">
+        <span class="dayword">Tuesday<br></span><span class="daynum">0</span>
+      </div>
+      <div data-day="Wednesday" id="wednesday" class="day">
+        <span class="dayword">Wednesday<br></span><span class="daynum">0</span>
+      </div>
+      <div data-day="Thursday" id="thursday" class="day">
+        <span class="dayword">Thursday<br></span><span class="daynum">0</span>
+      </div>
+      <div data-day="Friday" id="friday" class="day">
+        <span class="dayword">Friday<br></span><span class="daynum">0</span>
+      </div>
+      <div data-day="Saturday" id="saturday" class="day">
+        <span class="dayword">Saturday<br></span><span class="daynum">0</span>
+      </div>
     </div>
     <div class="add">
       <button id="entry">Add Entry</button>
     </div>
     <div class="schedule">
-      <h1>Scheduled Events for <span>Monday</span></h1>
+      <h1>Scheduled Events for <span id="currentday">Monday</span></h1>
         <table>
           <thead>
             <tr>
